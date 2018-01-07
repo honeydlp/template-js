@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js模版库</title>
+    <script src="temp.js"></script>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <script type="text/template" id="temp">
+        <ul>
+            <% for()%>
+        </ul>
+    </script>
+    <script>
+        new Template({
+            el:"app",
+            tem:"temp",
+            data:[
+                {
+                    text:"前端",status:"hot",
+                },
+                {
+                    text:"hahah",status:"too hot"
+                },
+                {
+                    text:"7777",status:"too cold"
+                }
+            ]
+        })
+    </script>
+</body>
+</html>
