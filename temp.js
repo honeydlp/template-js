@@ -22,7 +22,6 @@
         functionMain += "dataHtml += '";
         //需要替换的字符，普通语法（obj[i].text）,特殊语法for,截取位置
         text.replace(matcher,function(match,interpolate,eveluate,offset){//mactch匹配的子串。中间两个括号内匹配的内容，最后一个偏移
-            console.log(match,interpolate,eveluate,offset);
             functionMain+= text.slice(index,offset).replace(escaper,function(match){
                 return "\\"+escapes[match];
             });
@@ -36,7 +35,6 @@
             return match; //函数的返回值作为替换字符串
         })
         functionMain += "';return dataHtml;";
-        console.log(functionMain);
         var render = new Function('obj',functionMain); //最后一个参数是函数体，前面参数都为参数；
         return render(data);
     }
