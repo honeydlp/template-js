@@ -19,22 +19,24 @@
             "\u2029":"2029"
         }
         var functionMain = "var dataHtml = '';";
-        functionMain += "dataHtml+='";
+        functionMain += "dataHtml += '";
         //需要替换的字符，普通语法（obj[i].text）,特殊语法for,截取位置
-        text.replace(matcher,function(macth,interpolate,eveluate,offset){//mactch匹配的子串。中间两个括号内匹配的内容，最后一个偏移
-            functionMain+= text.slice(index,offset).replace(escaper,function(macth){
-                return "\\"+escapes[macth];
+        text.replace(matcher,function(match,interpolate,eveluate,offset){//mactch匹配的子串。中间两个括号内匹配的内容，最后一个偏移
+            console.log(match,interpolate,eveluate,offset);
+            functionMain+= text.slice(index,offset).replace(escaper,function(match){
+                return "\\"+escapes[match];
             });
             if(eveluate){
-                functionMain+="';"+eveluate+"dataHtml+='";
+                functionMain+="';" + eveluate + "dataHtml += '";
             }
             if(interpolate){
-                functionMain += "'+"+interpolate+"+='";
+                functionMain += "' + "+ interpolate + " + '";
             }
-            index = offset + macth.length;//叠加位置的索引
-            return macth; //函数的返回值作为替换字符串
+            index = offset + match.length;//叠加位置的索引
+            return match; //函数的返回值作为替换字符串
         })
-        functionMain += "';return dataHtml";
+        functionMain += "';return dataHtml;";
+        console.log(functionMain);
         var render = new Function('obj',functionMain); //最后一个参数是函数体，前面参数都为参数；
         return render(data);
     }

@@ -13,13 +13,18 @@
     </div>
     <script type="text/template" id="temp">
         <ul>
-            <% for()%>
+            <% for(var i in obj){ %>
+                <li>
+                    <span><%= obj[i].text %></span>
+                    <span><%= obj[i].status %></span>
+                </li>
+            <% } %>
         </ul>
     </script>
     <script>
         new Template({
-            el:"app",
-            tem:"temp",
+            el:"#app",
+            tem:"#temp",
             data:[
                 {
                     text:"前端",status:"hot",
